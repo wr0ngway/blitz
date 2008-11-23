@@ -22,7 +22,7 @@ What you'll need:
 * a coulda\_model
 * a RESTful controller
 * a helper
-* ERB template
+* ERB templates
 * a shoulda functional test using a [factory\_girl](http://github.com/thoughtbot/factory_girl) factory
 
 
