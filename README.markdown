@@ -1,6 +1,6 @@
 # Coulda generator
 
-Inspired by [technicalpickles'](http://technicalpickles.com/) [shoulda\_generator](http://github.com/hardbap/shoulda_generator) (okay blatantly ripped off from ;)
+Inspired by [technicalpickles'](http://technicalpickles.com/) [shoulda\_generator](http://github.com/technicalpickles/shoulda_generator) (okay blatantly ripped off from ;)
 
 What you'll need:
 
@@ -14,12 +14,12 @@ What you'll need:
 * a new model
 * a migration (skip using --skip-migration option)
 * a factory defined with [factory\_girl](http://github.com/thoughtbot/factory_girl) (skip using --skip-factory option)
-* a [shoulda](http://github.com/thoughtbot/shoulda) unit test with a few tests
+* a [shoulda](http://github.com/thoughtbot/shoulda) unit test with some tests
 
 
 ### coulda\_scaffold
 
-* a coulda\_model (same options are available)
+* a coulda\_model
 * a RESTful controller
 * a helper
 * ERB template
@@ -28,7 +28,7 @@ What you'll need:
 
 ## Example usage
 
-Use these just as you would the vanilla Rails generators.
+Use these just like the standard Rails generators.
     $ script/generate coulda\_model post title:string body:text published:boolean
     $ script/generate coulda\_scaffold post title:string body:text published:boolean
     
@@ -75,7 +75,7 @@ for this model:
       belongs_to :user
     end
     
-here's the unit test:
+with this unit test:
 
     require File.dirname(__FILE__) + '/../test_helper'
 
