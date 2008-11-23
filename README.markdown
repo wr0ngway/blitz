@@ -29,8 +29,8 @@ What you'll need:
 ## Example usage
 
 Use these just like the standard Rails generators.
-    $ script/generate coulda\_model post title:string body:text published:boolean
-    $ script/generate coulda\_scaffold post title:string body:text published:boolean
+    $ script/generate coulda_model post title:string body:text published:boolean
+    $ script/generate coulda_scaffold post title:string body:text published:boolean
     
     
 ## Other stuff
@@ -46,7 +46,7 @@ Using "belongs\_to" as the field type for your coulda\_model will give you some 
 
 ### example
 
-    $ script/generate coulda\_model post title:string body:text user:belongs_to
+    $ script/generate coulda_model post title:string body:text user:belongs_to
     
 will give you this migration:
 
