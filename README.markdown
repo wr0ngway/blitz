@@ -7,7 +7,7 @@ What you'll need:
 * [shoulda](http://github.com/thoughtbot/shoulda)
 * [factory\_girl](http://github.com/thoughtbot/factory_girl)
 
-## What is does
+## What it does
 
 ### coulda\_model
 
