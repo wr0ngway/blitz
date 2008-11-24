@@ -12,8 +12,8 @@ What you'll need:
 ### coulda\_model
 
 * a new model
-* a migration (skip using --skip-migration option)
-* a factory defined with [factory\_girl](http://github.com/thoughtbot/factory_girl) (skip using --skip-factory option)
+* a migration (skip using --skip-migration)
+* a factory defined with [factory\_girl](http://github.com/thoughtbot/factory_girl) (skip using --skip-factory)
 * a [shoulda](http://github.com/thoughtbot/shoulda) unit test with some tests
 
 
@@ -37,7 +37,7 @@ Use these just like the standard Rails generators.
 
 ### belongs\_to
 
-Using "belongs\_to" as the field type for your coulda\_model will give you some extras.
+Using "belongs\_to" as the field type will give you some extras.
 
 * "add_index" in the migration
 * "belongs\_to" in the model
