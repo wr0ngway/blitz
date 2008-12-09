@@ -38,9 +38,9 @@ Use these just like the standard Rails generators.
 
 ### belongs\_to
 
-Using "belongs\_to" as the field type will give you some extras.
+Using "belongs\_to" as the field type provides some extra goodness.
 
-* "add_index" in the migration
+* "add\_index" in the migration
 * "belongs\_to" in the model
 * "should\_belong\_to" in unit test
 * association in the factory
