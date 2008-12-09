@@ -1,4 +1,5 @@
 class CouldaModelGenerator < Rails::Generator::NamedBase
+
   default_options :skip_timestamps => false, :skip_migration => false, :skip_factory => false
  
   def manifest
@@ -7,16 +8,19 @@ class CouldaModelGenerator < Rails::Generator::NamedBase
       m.class_collisions class_path, class_name, "#{class_name}Test"
  
       # Model, test, and fixture directories.
-      m.directory File.join('app/models', class_path)
-      m.directory File.join('test/unit', class_path)
+      m.directory File.join('app/models',     class_path)
+      m.directory File.join('test/unit',      class_path)
       m.directory File.join('test/factories', class_path)
  
       # Model class, unit test, and fixtures.
-      m.template 'model.rb', File.join('app/models', class_path, "#{file_name}.rb")
-      m.template 'unit_test.rb', File.join('test/unit', class_path, "#{file_name}_test.rb")
+      m.template 'model.rb',     
+        File.join('app/models', class_path, "#{file_name}.rb")
+      m.template 'unit_test.rb', 
+        File.join('test/unit',  class_path, "#{file_name}_test.rb")
  
       unless options[:skip_factory]
-         m.template 'factory.rb', File.join('test/factories', class_path, "#{file_name}_factory.rb")
+         m.template 'factory.rb', 
+           File.join('test/factories', class_path, "#{file_name}_factory.rb")
       end
  
       unless options[:skip_migration]
@@ -28,7 +32,7 @@ class CouldaModelGenerator < Rails::Generator::NamedBase
   end
  
   def factory_line(attribute)
-    line = "f.#{attribute.name} " 
+    line = "factory.#{attribute.name} " 
     line + (if attribute.reference? 
             then "{|#{attribute.name}| #{attribute.name}.association(:#{attribute.name})}"
             else "'#{attribute.default}'"
@@ -45,10 +49,17 @@ class CouldaModelGenerator < Rails::Generator::NamedBase
       opt.separator ''
       opt.separator 'Options:'
       opt.on("--skip-timestamps",
-             "Don't add timestamps to the migration file for this model") { |v| options[:skip_timestamps] = v }
+             "Don't add timestamps to the migration file for this model") { |option| 
+               options[:skip_timestamps] = option 
+      }
       opt.on("--skip-migration",
-             "Don't generate a migration file for this model") { |v| options[:skip_migration] = v }
+             "Don't generate a migration file for this model") { |option| 
+               options[:skip_migration] = option 
+      }
       opt.on("--skip-factory",
-             "Don't generation a fixture file for this model") { |v| options[:skip_factory] = v}
+             "Don't generation a fixture file for this model") { |option| 
+               options[:skip_factory] = option
+      }
     end
+
 end

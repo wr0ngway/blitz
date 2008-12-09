@@ -36,6 +36,7 @@ namespace :generator do
   task :tests do
     system "mkdir -p test/rails_root/vendor/plugins/coulda"
     system "cp -R generators test/rails_root/vendor/plugins/coulda"
-    system "cd test/rails_root; ./script/generate coulda"
+    system "cd test/rails_root"
+    system "script/generate coulda_scaffold post title:string body:text user:belongs_to"
   end
 end
