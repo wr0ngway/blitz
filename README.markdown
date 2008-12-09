@@ -23,12 +23,13 @@ What you'll need:
 * a RESTful controller
 * a helper
 * ERB templates
-* a shoulda functional test using a [factory\_girl](http://github.com/thoughtbot/factory_girl) factory
+* a [shoulda](http://github.com/thoughtbot/shoulda) functional test using a [factory\_girl](http://github.com/thoughtbot/factory_girl) factory
 
 
 ## Example usage
 
 Use these just like the standard Rails generators.
+
     $ script/generate coulda_model post title:string body:text published:boolean
     $ script/generate coulda_scaffold post title:string body:text published:boolean
     
