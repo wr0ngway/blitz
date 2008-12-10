@@ -1,18 +1,15 @@
 require File.dirname(__FILE__) + '/../test_helper'
  
 class <%= controller_class_name %>ControllerTest < ActionController::TestCase
-  context 'GET to index' do
-    setup do
-      get :index
-    end
+  context "GET to index" do
+    setup { get :index }
+    
     should_respond_with :success
     should_assign_to :<%= table_name %>
   end
  
-  context 'GET to new' do
-    setup do
-      get :new
-    end
+  context "GET to new" do
+    setup { get :new }
  
     should_respond_with :success
     should_render_template :new
@@ -33,6 +30,7 @@ class <%= controller_class_name %>ControllerTest < ActionController::TestCase
       @<%= file_name %> = Factory(:<%= file_name %>)
       get :show, :id => @<%= file_name %>.id
     end
+    
     should_respond_with :success
     should_render_template :show
     should_assign_to :<%= file_name %>
@@ -43,6 +41,7 @@ class <%= controller_class_name %>ControllerTest < ActionController::TestCase
       @<%= file_name %> = Factory(:<%= file_name %>)
       get :edit, :id => @<%= file_name %>.id
     end
+    
     should_respond_with :success
     should_render_template :edit
     should_assign_to :<%= file_name %>
@@ -53,6 +52,7 @@ class <%= controller_class_name %>ControllerTest < ActionController::TestCase
       @<%= file_name %> = Factory(:<%= file_name %>)
       put :update, :id => @<%= file_name %>.id, :<%= file_name %> => Factory.attributes_for(:<%= file_name %>)
     end
+    
     should_redirect_to '<%= file_name %>_path(@<%= file_name %>)'
   end
  
@@ -61,6 +61,7 @@ class <%= controller_class_name %>ControllerTest < ActionController::TestCase
       @<%= file_name %> = Factory(:<%= file_name %>)
       delete :destroy, :id => @<%= file_name %>.id
     end
+    
     should_redirect_to '<%= table_name %>_path'
   end
 end
