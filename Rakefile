@@ -19,13 +19,13 @@ begin
   require 'rubygems'
   require 'jeweler'
   Jeweler::Tasks.new do |s|
-    s.name = "coulda"
-    s.summary = "Rails generators that create Shoulda & Factory Girl tests."
-    s.email = "hardbap@gmail.com"
-    s.homepage = "http://github.com/hardbap/coulda"
+    s.name        = "coulda"
+    s.summary     = "Rails generators that create Shoulda & Factory Girl tests."
+    s.email       = "hardbap@gmail.com"
+    s.homepage    = "http://github.com/hardbap/coulda"
     s.description = "Rails generators that create Shoulda & Factory Girl tests."
-    s.authors = ["Mike Breen"]
-    s.files = FileList["[A-Z]*", "{generators,lib,test}/**/*"]
+    s.authors     = ["Mike Breen"]
+    s.files       = FileList["[A-Z]*", "{generators,lib,test}/**/*"]
   end
 rescue LoadError
   puts "Jeweler not available. Install it with: sudo gem install technicalpickles-jeweler -s http://gems.github.com"
@@ -38,7 +38,6 @@ namespace :generator do
     system "cp -R generators test/rails_root/vendor/plugins/coulda"
     system "cd test/rails_root"
     system "./script/generate coulda_scaffold post title:string body:text user:belongs_to"
-    system "rake db:migrate"
-    system "rake test"
+    system "rake db:migrate && rake test"
   end
 end
