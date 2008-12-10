@@ -182,10 +182,12 @@ class Factory
 
     def find_definitions #:nodoc:
       definition_file_paths.each do |path|
-        begin
-          require(path)
-          break
-        rescue LoadError
+        require("#{path}.rb") if File.exists?("#{path}.rb")
+
+        if File.directory? path
+          Dir[File.join(path, '*.rb')].each do |file|
+            require file
+          end
         end
       end
     end
@@ -223,7 +225,7 @@ class Factory
 
   def class_for (class_or_to_s)
     if class_or_to_s.respond_to?(:to_sym)
-      class_or_to_s.to_s.classify.constantize
+      class_or_to_s.to_s.pluralize.classify.constantize
     else
       class_or_to_s
     end
