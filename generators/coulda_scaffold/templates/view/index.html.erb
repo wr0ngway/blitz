@@ -1,15 +1,15 @@
-<h1> Listing <%= plural_name %></h1>
+<h1><%= plural_name %></h1>
  
 <table>
   <tr>
-<% for attribute in attributes -%>
+<% attributes.each do |attribute| -%>
     <th><%= attribute.column.human_name %></th>
 <% end -%>
   </tr>
  
-  <%% for <%= singular_name %> in @<%= plural_name %> %>
+  <%% @<%= plural_name %>.each do |<%= singular_name %>| %>
   <tr>
-<% for attribute in attributes -%>
+<% attributes.each do |attribute| -%>
     <td><%%= h <%= singular_name %>.<%= attribute.name %> %></td>
 <% end -%>
     <td><%%= link_to 'Show', <%= singular_name %> %></td>

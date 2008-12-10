@@ -34,7 +34,7 @@ class CouldaModelGenerator < Rails::Generator::NamedBase
   def factory_line(attribute)
     line = "factory.#{attribute.name} " 
     line + (if attribute.reference? 
-            then "{|#{attribute.name}| #{attribute.name}.association(:#{attribute.name})}"
+            then "{ |#{attribute.name}| #{attribute.name}.association(:#{attribute.name}) }"
             else "'#{attribute.default}'"
             end)  
   end

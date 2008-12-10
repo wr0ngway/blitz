@@ -1,4 +1,7 @@
 ActionController::Routing::Routes.draw do |map|
+  
+  map.resources :posts
+
 
   # Sample resource route (maps HTTP verbs to controller actions automatically):
   #   map.resources :products

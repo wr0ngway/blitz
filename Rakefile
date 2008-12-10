@@ -38,5 +38,7 @@ namespace :generator do
     system "cp -R generators test/rails_root/vendor/plugins/coulda"
     system "cd test/rails_root"
     system "./script/generate coulda_scaffold post title:string body:text user:belongs_to"
+    system "rake db:migrate"
+    system "rake test"
   end
 end

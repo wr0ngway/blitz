@@ -1,15 +1,15 @@
 class <%= controller_class_name %>Controller < ApplicationController
   def index
-    @<%= table_name %> = <%= class_name %>.find(:all)
- 
-      respond_to do |format|
-        format.html
-        format.xml { render :xml => @<%= table_name %> }
-      end
+    @<%= table_name %> = <%= class_name %>.find :all
+    
+    respond_to do |format|
+      format.html
+      format.xml { render :xml => @<%= table_name %> }
+    end
   end
  
   def show
-    @<%= file_name %> = <%= class_name %>.find(params[:id])
+    @<%= file_name %> = <%= class_name %>.find params[:id]
  
     respond_to do |format|
       format.html
@@ -27,11 +27,11 @@ class <%= controller_class_name %>Controller < ApplicationController
   end
  
   def edit
-    @<%= file_name %> = <%= class_name %>.find(params[:id])
+    @<%= file_name %> = <%= class_name %>.find params[:id]
   end
  
   def create
-    @<%= file_name %> = <%= class_name %>.new(params[:<%= file_name %>])
+    @<%= file_name %> = <%= class_name %>.new params[:<%= file_name %>]
  
     respond_to do |format|
       if @<%= file_name %>.save
@@ -46,7 +46,7 @@ class <%= controller_class_name %>Controller < ApplicationController
   end
  
   def update
-    @<%= file_name %> = <%= class_name %>.find(params[:id])
+    @<%= file_name %> = <%= class_name %>.find params[:id]
  
     respond_to do |format|
       if @<%= file_name %>.update_attributes(params[:<%= file_name %>])
@@ -61,7 +61,7 @@ class <%= controller_class_name %>Controller < ApplicationController
   end
  
   def destroy
-    @<%= file_name %> = <%= class_name %>.find(params[:id])
+    @<%= file_name %> = <%= class_name %>.find params[:id]
     @<%= file_name %>.destroy
  
     respond_to do |format|
