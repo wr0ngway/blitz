@@ -1,2 +1,3 @@
-* how about some tests buddy.
-* and a gem
+* remove xml in controller? or add default xml builder?
+* use each iterator instead of for loops
+* no table in index view, use something cleaner
