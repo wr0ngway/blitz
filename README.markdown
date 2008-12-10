@@ -97,3 +97,7 @@ and finally our factory:
       f.body 'MyString'
       f.user {|f| f.association(:user)}
     end
+
+## Authors
+
+Mike Breen and [Dan Croak](http://github.com/dancroak)
