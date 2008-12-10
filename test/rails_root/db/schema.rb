@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20081210010823) do
+ActiveRecord::Schema.define(:version => 20081210013756) do
 
   create_table "posts", :force => true do |t|
     t.string   "title"
@@ -20,5 +20,11 @@ ActiveRecord::Schema.define(:version => 20081210010823) do
   end
 
   add_index "posts", ["user_id"], :name => "index_posts_on_user_id"
+
+  create_table "users", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
 end

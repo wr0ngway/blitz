@@ -39,6 +39,6 @@ namespace :generator do
     system "cd test/rails_root; "                     <<
            "./script/generate coulda_scaffold post "  <<
            "title:string body:text user:belongs_to; " <<
-           "rake test"
+           "rake db:migrate; rake db:test:prepare; rake test"
   end
 end
