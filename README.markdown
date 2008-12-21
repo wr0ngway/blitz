@@ -24,6 +24,7 @@ What you'll need:
 * a helper
 * ERB templates
 * a [shoulda](http://github.com/thoughtbot/shoulda) functional test using a [factory\_girl](http://github.com/thoughtbot/factory_girl) factory
+* a helper test in test/unit/helper
 
 
 ## Example usage
