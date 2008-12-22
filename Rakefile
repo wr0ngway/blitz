@@ -19,7 +19,7 @@ begin
     s.email       = "hardbap@gmail.com"
     s.homepage    = "http://github.com/hardbap/coulda"
     s.description = "Rails generators that create Shoulda & Factory Girl tests."
-    s.authors     = ["Mike Breen"]
+    s.authors     = ["Mike Breen", "Dan Croak"]
     s.files       = FileList["[A-Z]*", "{generators,lib,test}/**/*"]
   end
 rescue LoadError
