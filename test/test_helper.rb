@@ -20,7 +20,7 @@ unless defined?(RAILS_DEFAULT_LOGGER)
   RAILS_DEFAULT_LOGGER = Logger.new(@test_log)
 end
 
-Rails::Generator::Base.prepend_sources Rails::Generator::PathSource.new(:shoulda_generator, File.join(File.dirname(__FILE__), "..", "rails_generators"))
+Rails::Generator::Base.prepend_sources Rails::Generator::PathSource.new(:coulda_generator, File.join(File.dirname(__FILE__), "..", "generators"))
 
 class GeneratorTestCase
   # Asserts that the given factory was created.

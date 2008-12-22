@@ -283,6 +283,6 @@ class GeneratorTestCase < Test::Unit::TestCase
 
   # Asserts that the given column is defined in the migration.
   def assert_generated_column(body, name, type)
-    assert_match /t\.#{type.to_s} :#{name.to_s}/, body, "should have column #{name.to_s} defined"
+    assert_match /table\.#{type.to_s} :#{name.to_s}/, body, "should have column #{name.to_s} defined"
   end
 end

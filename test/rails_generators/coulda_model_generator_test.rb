@@ -1,10 +1,10 @@
 require File.join(File.dirname(__FILE__), '..', 'test_helper')
 
 
-class ShouldaModelGeneratorTest < GeneratorTestCase
+class CouldaModelGeneratorTest < GeneratorTestCase
   context "running the default generator" do
     setup do
-      run_generator('shoulda_model', %w(Product name:string supplier_id:integer created_at:timestamp))
+      run_generator('coulda_model', %w(Product name:string supplier_id:integer created_at:timestamp))
     end
     
     should_generate_model :product
@@ -23,7 +23,7 @@ class ShouldaModelGeneratorTest < GeneratorTestCase
   
   context "running the generator, when skipping factory and migration" do
     setup do
-      run_generator('shoulda_model', %w(Product name:string supplier_id:integer created_at:timestamp --skip-factory))
+      run_generator('coulda_model', %w(Product name:string supplier_id:integer created_at:timestamp --skip-factory))
     end
     
     should_generate_model :product
