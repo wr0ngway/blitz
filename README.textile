@@ -18,10 +18,10 @@ h2. Model generator
 
 h2. Controller generator
 
-    $ script/generate controller Users
+    $ script/generate controller Users new
 
-* functional test (Shoulda & Factory Girl)
-* empty controller class
+* functional test (Shoulda & Factory Girl), only test RESTful new action
+* controller, only RESTful new action
 * no helper file
 
 h2. Helper generator
@@ -35,7 +35,9 @@ h2. View generator
 
     $ script/generate view Posts new
 
-h2. belongs_to
+* not sure about this one yet
+
+h2. Special attribute for model generator: belongs_to
 
     $ script/generate model post user:belongs_to
 

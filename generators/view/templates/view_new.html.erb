@@ -2,13 +2,5 @@
 
 <%% form_for(@<%= singular_name %>) do |form| %>
   <%%= form.error_messages %>
-<% attributes.each do |attribute| -%>
-  <p>
-    <%%= form.label :<%= attribute.name %> %><br />
-    <%%= form.<%= attribute.field_type %> :<%= attribute.name %> %>
-  </p>
-<% end -%>
-  <p>
-    <%%= form.submit "Create", :disable_with => "Please wait..." %>
-  </p>
+  <%%= form.submit "Create", :disable_with => "Please wait..." %>
 <%% end %>
