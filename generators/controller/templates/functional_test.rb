@@ -8,12 +8,11 @@ class <%= class_name %>ControllerTest < ActionController::TestCase
 
     should_respond_with :success
     should_render_template :index
-    should_assign_to :<%= table_name %>
   end
 
 <% end -%>
 <% if actions.include?("new") -%>
-  context "GET to new" do
+  context 'GET to new' do
     setup { get :new }
 
     should_respond_with :success

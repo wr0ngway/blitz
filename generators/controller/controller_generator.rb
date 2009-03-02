@@ -6,10 +6,9 @@ class ControllerGenerator < Rails::Generator::NamedBase
 
       # Controller and test directories.
       m.directory File.join('app/controllers', class_path)
-      m.directory File.join('app/views', class_path, file_name)
       m.directory File.join('test/functional', class_path)
 
-      # Controller class, functional test, and helper class.
+      # Controller class and functional test.
       m.template 'controller.rb',
                   File.join('app/controllers',
                             class_path,
@@ -19,13 +18,6 @@ class ControllerGenerator < Rails::Generator::NamedBase
                   File.join('test/functional',
                             class_path,
                             "#{file_name}_controller_test.rb")
-
-      # View template for specified action.
-      actions.each do |action|
-        path = File.join('app/views', class_path, file_name, "#{action}.html.erb")
-        m.template 'view.html.erb', path,
-          :assigns => { :action => action, :path => path }
-      end
     end
   end
 end

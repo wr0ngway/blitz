@@ -99,14 +99,38 @@ Then /^a standard "index" functional test for "(.*)" should be generated$/ do |c
                "    setup { get :index }\n\n" <<
                "    should_respond_with :success\n" <<
                "    should_render_template :index\n" <<
-               "    should_assign_to :#{controller}\n" <<
                "  end"
-    assert body.include?(expected), body.inspect
+    assert body.include?(expected), 
+      "expected #{expected} but was #{body.inspect}"
   end
 end
 
-Then /^an empty "(.*)" view for "(.*)" should be generated$/ do |index, controller|
-  assert_generated_views_for(controller, index)
+Then /^a standard "new" functional test for "(.*)" should be generated$/ do |controller|
+  assert_generated_functional_test_for(controller) do |body|
+    expected = "  context 'GET to new' do\n" <<
+               "    setup { get :new }\n\n" <<
+               "    should_respond_with :success\n" <<
+               "    should_render_template :new\n" <<
+               "    should_assign_to :#{controller}\n" <<
+               "  end"
+    assert body.include?(expected), 
+      "expected #{expected} but was #{body.inspect}"
+  end
+
+end
+
+Then /^a "new" controller action for "(.*)" should be generated$/ do |controller|
+  assert_generated_controller_for(controller) do |body|
+    expected = "  def new\n" <<
+               "    @#{controller.chop} = #{controller.capitalize.chop}.new\n" <<
+               "  end"
+    assert body.include?(expected), 
+      "expected #{expected} but was #{body.inspect}"
+  end
+end
+
+Then /^an empty "(.*)" view for "(.*)" should be generated$/ do |action, controller|
+  assert_generated_views_for(controller, action)
 end
 
 Then /^an empty "(.*)" controller action for "(.*)" should be generated$/ do |action, controller|
