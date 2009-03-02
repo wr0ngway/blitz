@@ -7,6 +7,10 @@ h2. Requirements
 * "Shoulda":http://github.com/thoughtbot/shoulda
 * "Factory Girl":http://github.com/thoughtbot/factory_girl
 
+h2. Installation
+
+    $ script/plugin install git://github.com/hardbap/coulda.git
+
 h2. Model generator
 
     $ script/generate model User
