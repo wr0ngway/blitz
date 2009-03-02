@@ -29,7 +29,16 @@ class ModelGenerator < Rails::Generator::NamedBase
     end
   end
 
+  def factory_line(attribute, file_name)
+    if attribute.reference?
+      "#{file_name}.association(:#{attribute.name})"
+    else
+      "#{file_name}.#{attribute.name} #{attribute.default_for_factory}"
+    end
+  end
+
   protected
+
     def banner
       "Usage: #{$0} #{spec.name} ModelName [field:type, field:type]"
     end

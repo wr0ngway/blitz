@@ -17,3 +17,11 @@ Feature: Rails model generator
     Then a factory for "User" should have an "email" string
     And a unit test should be generated for "User"
 
+  Scenario: Model generator with association
+    Given a Rails app
+    And the coulda plugin is installed
+    When I generate a model "Post" that belongs to a "User"
+    Then a factory for "Post" should have an association to "User"
+    And the "Post" unit test should have "should_belong_to :user" macro
+    And the "Post" unit test should have "should_have_index :user_id" macro
+

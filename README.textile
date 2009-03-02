@@ -67,7 +67,7 @@ h2. Attribution
 
 "Mike Breen":http://github.com/hardbap and "Dan Croak":http://github.com/dancroak
 
-Inspired by "shoulda_generator":http://github.com/technicalpickles/shoulda_generator and "model_generator_with_factories":http://github.com/vigetlabs/model_generator_with_factories 
+Inspired by "shoulda_generator":http://github.com/technicalpickles/shoulda_generator, "model_generator_with_factories":http://github.com/vigetlabs/model_generator_with_factories, and "nifty_generators":http://github.com/ryanb/nifty-generators
 
 h2. License
 
