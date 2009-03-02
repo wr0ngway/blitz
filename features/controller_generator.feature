@@ -17,3 +17,11 @@ Feature: Rails controller generator
     Then a standard "new" functional test for "posts" should be generated
     And a "new" controller action for "posts" should be generated
 
+  Scenario: Controller generator for create action
+    Given a Rails app
+    And the coulda plugin is installed
+    When I generate a "Posts" controller with "create" action
+    Then a standard "create" functional test for "posts" should be generated
+    And a "create" controller action for "posts" should be generated
+
+

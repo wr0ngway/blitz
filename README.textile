@@ -1,6 +1,6 @@
-h1. Coulda generator
+h1. Coulda generators
 
-A Rails plugin that overrides the default model & controller generators. Uses Shoulda, Factory Girl, & best practice conventions.
+A plugin that overrides Rails' model, controller, & helper generators. It also adds a view generator. It uses Shoulda, Factory Girl, & the latest "best practice patterns".
 
 h2. Requirements
 
@@ -21,9 +21,19 @@ h2. Controller generator
     $ script/generate controller Users
 
 * functional test (Shoulda & Factory Girl)
-* RESTful controller
-* helper test
-* helper
+* empty controller class
+* no helper file
+
+h2. Helper generator
+
+    $ script/generate helper Navigation
+
+* empty helper test file
+* empty helper module
+
+h2. View generator
+
+    $ script/generate view Posts new
 
 h2. belongs_to
 

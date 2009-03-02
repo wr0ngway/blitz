@@ -22,13 +22,14 @@ class <%= class_name %>ControllerTest < ActionController::TestCase
 
 <% end -%>
 <% if actions.include?("create") -%>
-  context 'POST to create' do
+  context 'POST to create with valid parameters' do
     setup do
-      post :create, :<%= file_name %> => Factory.attributes_for(:<%= file_name %>)
-      @<%= file_name %> = <%= class_name %>.find(:all).last
+      post :create, :<%= file_name.singularize %> => Factory.attributes_for(:<%= file_name.singularize %>)
     end
 
-    should_redirect_to '<%= file_name %>_path(@<%= file_name %>)'
+    should_set_the_flash_to /created/i
+    should_redirect_to '<%= file_name %>_path'
+    should_change '<%= class_name.singularize %>.count', :by => 1
   end
 
 <% end -%>
