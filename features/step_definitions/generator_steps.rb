@@ -43,7 +43,10 @@ end
 
 Then /^a unit test should be generated for "(.*)"$/ do |model|
   model.downcase!
-  assert_generated_unit_test_for(model)
+  assert_generated_unit_test_for(model) do |body|
+    match = "assert_valid Factory.build(:#{model})"
+    assert body.include?(match), body.inspect
+  end
 end
 
 After do
