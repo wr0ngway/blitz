@@ -38,3 +38,10 @@ Feature: Rails controller generator
     Then a standard "edit" functional test for "posts" should be generated
     And a "edit" controller action for "posts" should be generated
 
+  Scenario: Controller generator for update action
+    Given a Rails app
+    And the coulda plugin is installed
+    When I generate a "Posts" controller with "update" action
+    Then a standard "update" functional test for "posts" should be generated
+    And a "update" controller action for "posts" should be generated
+

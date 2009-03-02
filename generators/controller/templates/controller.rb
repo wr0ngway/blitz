@@ -35,4 +35,13 @@ class <%= class_name %>Controller < ApplicationController
   end
 
 <% end -%>
+<% if actions.include?("update") -%>
+  def update
+    @<%= resource %> = <%= resource_class %>.find(params[:id])
+    @<%= resource %>.update_attributes(params[:<%= resource %>])
+    flash[:success] = '<%= resource_class %> updated.'
+    redirect_to <%= resources %>_path
+  end
+
+<% end -%>
 end

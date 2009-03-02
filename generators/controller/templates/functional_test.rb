@@ -63,13 +63,14 @@ class <%= class_name %>ControllerTest < ActionController::TestCase
 
 <% end -%>
 <% if actions.include?("update") -%>
-  context 'PUT to update' do
+  context 'PUT to update for existing <%= resource %>' do
     setup do
-      @<%= file_name %> = Factory(:<%= file_name %>)
-      put :update, :id => @<%= file_name %>.id, :<%= file_name %> => Factory.attributes_for(:<%= file_name %>)
+      @<%= resource %> = Factory(:<%= resource %>)
+      put :update, :id => @<%= resource %>.to_param,
+        :<%= resource %> => Factory.attributes_for(:<%= resource %>)
     end
 
-    should_redirect_to '<%= file_name %>_path(@<%= file_name %>)'
+    should_redirect_to '<%= resources %>_path'
   end
 
 <% end -%>

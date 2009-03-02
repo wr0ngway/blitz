@@ -76,6 +76,21 @@ Then /^a standard "edit" functional test for "posts" should be generated$/ do
   end
 end
 
+Then /^a standard "update" functional test for "posts" should be generated$/ do
+  assert_generated_functional_test_for("posts") do |body|
+    expected = "  context 'PUT to update for existing post' do\n" <<
+               "    setup do\n" <<
+               "      @post = Factory(:post)\n" <<
+               "      put :update, :id => @post.to_param,\n" <<
+               "        :post => Factory.attributes_for(:post)\n" <<
+               "    end\n\n" <<
+               "    should_redirect_to 'posts_path'\n" <<
+               "  end"
+    assert body.include?(expected), 
+      "expected #{expected} but was #{body.inspect}"
+  end
+end
+
 Then /^a "new" controller action for "posts" should be generated$/ do
   assert_generated_controller_for("posts") do |body|
     expected = "  def new\n" <<
@@ -113,6 +128,19 @@ Then /^a "edit" controller action for "posts" should be generated$/ do
   assert_generated_controller_for("posts") do |body|
     expected = "  def edit\n" <<
                "    @post = Post.find(params[:id])\n" <<
+               "  end"
+    assert body.include?(expected), 
+      "expected #{expected} but was #{body.inspect}"
+  end
+end
+
+Then /^a "update" controller action for "posts" should be generated$/ do
+  assert_generated_controller_for("posts") do |body|
+    expected = "  def update\n" <<
+               "    @post = Post.find(params[:id])\n" <<
+               "    @post.update_attributes(params[:post])\n" <<
+               "    flash[:success] = 'Post updated.'\n" <<
+               "    redirect_to posts_path\n" <<
                "  end"
     assert body.include?(expected), 
       "expected #{expected} but was #{body.inspect}"
