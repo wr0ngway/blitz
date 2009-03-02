@@ -25,11 +25,6 @@ h2. Controller generator
 * helper test
 * helper
 
-h2. Example usage
-
-    $ script/generate controller posts index
-    $ script/generate model post title:string body:text published:boolean
-
 h2. belongs_to
 
     $ script/generate model post user:belongs_to
@@ -60,23 +55,21 @@ class Post < ActiveRecord::Base
 end
 
 class PostTest < ActiveSupport::TestCase
-
   should_belong_to :user
   should_have_index :user_id
-
 end
 
 Factory.define :post do |post|
   post.association(:user)
 end</code></pre>
 
-## Attribution
+h2. Attribution
 
 "Mike Breen":http://github.com/hardbap and "Dan Croak":http://github.com/dancroak
 
 Inspired by "shoulda_generator":http://github.com/technicalpickles/shoulda_generator and "model_generator_with_factories":http://github.com/vigetlabs/model_generator_with_factories 
 
-## License
+h2. License
 
 The MIT License
 

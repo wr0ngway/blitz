@@ -41,6 +41,11 @@ Then /^a factory for "(.*)" should have an? "(.*)" (.*)$/ do |model, attr_name, 
   end
 end
 
+Then /^a unit test should be generated for "(.*)"$/ do |model|
+  model.downcase!
+  assert_generated_unit_test_for(model)
+end
+
 After do
   FileUtils.rm_rf @rails_root if @rails_root
 end
