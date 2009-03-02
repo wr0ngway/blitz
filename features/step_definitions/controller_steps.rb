@@ -35,9 +35,9 @@ Then /^a standard "create" functional test for "posts" should be generated$/ do
                "    setup do\n" <<
                "      post :create, :post => Factory.attributes_for(:post)\n" <<
                "    end\n\n" <<
+               "    should_change 'Post.count', :by => 1\n" <<
                "    should_set_the_flash_to /created/i\n" <<
                "    should_redirect_to 'posts_path'\n" <<
-               "    should_change 'Post.count', :by => 1\n" <<
                "  end"
     assert body.include?(expected), 
       "expected #{expected} but was #{body.inspect}"
@@ -84,6 +84,23 @@ Then /^a standard "update" functional test for "posts" should be generated$/ do
                "      put :update, :id => @post.to_param,\n" <<
                "        :post => Factory.attributes_for(:post)\n" <<
                "    end\n\n" <<
+               "    should_set_the_flash_to /updated/i\n" <<
+               "    should_redirect_to 'posts_path'\n" <<
+               "  end"
+    assert body.include?(expected), 
+      "expected #{expected} but was #{body.inspect}"
+  end
+end
+
+Then /^a standard "destroy" functional test for "posts" should be generated$/ do
+  assert_generated_functional_test_for("posts") do |body|
+    expected = "  context 'DELETE to destroy' do\n" <<
+               "    setup do\n" <<
+               "      @post = Factory(:post)\n" <<
+               "      delete :destroy, :id => @post.to_param\n" <<
+               "    end\n\n" <<
+               "    should_change 'Post.count', :from => 1, :to => 0\n" <<
+               "    should_set_the_flash_to /deleted/i\n" <<
                "    should_redirect_to 'posts_path'\n" <<
                "  end"
     assert body.include?(expected), 
@@ -140,6 +157,19 @@ Then /^a "update" controller action for "posts" should be generated$/ do
                "    @post = Post.find(params[:id])\n" <<
                "    @post.update_attributes(params[:post])\n" <<
                "    flash[:success] = 'Post updated.'\n" <<
+               "    redirect_to posts_path\n" <<
+               "  end"
+    assert body.include?(expected), 
+      "expected #{expected} but was #{body.inspect}"
+  end
+end
+
+Then /^a "destroy" controller action for "posts" should be generated$/ do
+  assert_generated_controller_for("posts") do |body|
+    expected = "  def destroy\n" <<
+               "    @post = Post.find(params[:id])\n" <<
+               "    @post.destroy\n" <<
+               "    flash[:success] = 'Post deleted.'\n" <<
                "    redirect_to posts_path\n" <<
                "  end"
     assert body.include?(expected), 

@@ -44,4 +44,13 @@ class <%= class_name %>Controller < ApplicationController
   end
 
 <% end -%>
+<% if actions.include?("destroy") -%>
+  def destroy
+    @<%= resource %> = <%= resource_class %>.find(params[:id])
+    @<%= resource %>.destroy
+    flash[:success] = '<%= resource_class %> deleted.'
+    redirect_to <%= resources %>_path
+  end
+
+<% end -%>
 end

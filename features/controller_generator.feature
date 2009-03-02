@@ -45,3 +45,10 @@ Feature: Rails controller generator
     Then a standard "update" functional test for "posts" should be generated
     And a "update" controller action for "posts" should be generated
 
+  Scenario: Controller generator for destroy action
+    Given a Rails app
+    And the coulda plugin is installed
+    When I generate a "Posts" controller with "destroy" action
+    Then a standard "destroy" functional test for "posts" should be generated
+    And a "destroy" controller action for "posts" should be generated
+

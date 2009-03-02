@@ -30,9 +30,9 @@ class <%= class_name %>ControllerTest < ActionController::TestCase
       post :create, :<%= resource %> => Factory.attributes_for(:<%= resource %>)
     end
 
+    should_change '<%= resource_class %>.count', :by => 1
     should_set_the_flash_to /created/i
     should_redirect_to '<%= resources %>_path'
-    should_change '<%= resource_class %>.count', :by => 1
   end
 
 <% end -%>
@@ -70,6 +70,7 @@ class <%= class_name %>ControllerTest < ActionController::TestCase
         :<%= resource %> => Factory.attributes_for(:<%= resource %>)
     end
 
+    should_set_the_flash_to /updated/i
     should_redirect_to '<%= resources %>_path'
   end
 
@@ -77,11 +78,13 @@ class <%= class_name %>ControllerTest < ActionController::TestCase
 <% if actions.include?("destroy") -%>
   context 'DELETE to destroy' do
     setup do
-      @<%= file_name %> = Factory(:<%= file_name %>)
-      delete :destroy, :id => @<%= file_name %>.id
+      @<%= resource %> = Factory(:<%= resource %>)
+      delete :destroy, :id => @<%= resource %>.to_param
     end
 
-    should_redirect_to '<%= table_name %>_path'
+    should_change '<%= resource_class %>.count', :from => 1, :to => 0
+    should_set_the_flash_to /deleted/i
+    should_redirect_to '<%= resources %>_path'
   end
 
 <% end -%>
