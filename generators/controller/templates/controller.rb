@@ -1,4 +1,8 @@
 class <%= class_name %>Controller < ApplicationController
+<% resource       = file_name.singularize -%>
+<% resources      = file_name.pluralize -%>
+<% resource_class = class_name.singularize -%>
+
 <% if actions.include?("index") -%>
   def index
   end
@@ -6,16 +10,22 @@ class <%= class_name %>Controller < ApplicationController
 <% end -%>
 <% if actions.include?("new") -%>
   def new
-    @<%= file_name.singularize %> = <%= class_name.singularize %>.new
+    @<%= resource %> = <%= resource_class %>.new
   end
 
 <% end -%>
 <% if actions.include?("create") -%>
   def create
-    @<%= file_name.singularize %> = <%= class_name.singularize %>.new(params[:<%= file_name.singularize %>])
-    @<%= file_name.singularize %>.save
-    flash[:success] = '<%= class_name.singularize %> created.'
-    redirect_to <%= file_name %>_path
+    @<%= resource %> = <%= resource_class %>.new(params[:<%= resource %>])
+    @<%= resource %>.save
+    flash[:success] = '<%= resource_class %> created.'
+    redirect_to <%= resources %>_path
+  end
+
+<% end -%>
+<% if actions.include?("show") -%>
+  def show
+    @<%= resource %> = <%= resource_class %>.find(params[:id])
   end
 
 <% end -%>

@@ -24,4 +24,10 @@ Feature: Rails controller generator
     Then a standard "create" functional test for "posts" should be generated
     And a "create" controller action for "posts" should be generated
 
+  Scenario: Controller generator for show action
+    Given a Rails app
+    And the coulda plugin is installed
+    When I generate a "Posts" controller with "show" action
+    Then a standard "show" functional test for "posts" should be generated
+    And a "show" controller action for "posts" should be generated
 
