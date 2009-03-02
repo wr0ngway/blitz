@@ -29,4 +29,10 @@ class <%= class_name %>Controller < ApplicationController
   end
 
 <% end -%>
+<% if actions.include?("edit") -%>
+  def edit
+    @<%= resource %> = <%= resource_class %>.find(params[:id])
+  end
+
+<% end -%>
 end

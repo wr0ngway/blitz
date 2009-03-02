@@ -50,15 +50,15 @@ class <%= class_name %>ControllerTest < ActionController::TestCase
 
 <% end -%>
 <% if actions.include?("edit") -%>
-  context 'GET to edit' do
+  context 'GET to edit for existing <%= resource %>' do
     setup do
-      @<%= file_name %> = Factory(:<%= file_name %>)
-      get :edit, :id => @<%= file_name %>.id
+      @<%= resource %> = Factory(:<%= resource %>)
+      get :edit, :id => @<%= resource %>.to_param
     end
 
     should_respond_with :success
     should_render_template :edit
-    should_assign_to :<%= file_name %>
+    should_assign_to :<%= resource %>, :equals => '@<%= resource %>'
   end
 
 <% end -%>

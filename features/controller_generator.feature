@@ -31,3 +31,10 @@ Feature: Rails controller generator
     Then a standard "show" functional test for "posts" should be generated
     And a "show" controller action for "posts" should be generated
 
+  Scenario: Controller generator for edit action
+    Given a Rails app
+    And the coulda plugin is installed
+    When I generate a "Posts" controller with "edit" action
+    Then a standard "edit" functional test for "posts" should be generated
+    And a "edit" controller action for "posts" should be generated
+

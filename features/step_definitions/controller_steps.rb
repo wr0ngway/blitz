@@ -60,6 +60,22 @@ Then /^a standard "show" functional test for "posts" should be generated$/ do
   end
 end
 
+Then /^a standard "edit" functional test for "posts" should be generated$/ do
+  assert_generated_functional_test_for("posts") do |body|
+    expected = "  context 'GET to edit for existing post' do\n" <<
+               "    setup do\n" <<
+               "      @post = Factory(:post)\n" <<
+               "      get :edit, :id => @post.to_param\n" <<
+               "    end\n\n" <<
+               "    should_respond_with :success\n" <<
+               "    should_render_template :edit\n" <<
+               "    should_assign_to :post, :equals => '@post'\n" <<
+               "  end"
+    assert body.include?(expected), 
+      "expected #{expected} but was #{body.inspect}"
+  end
+end
+
 Then /^a "new" controller action for "posts" should be generated$/ do
   assert_generated_controller_for("posts") do |body|
     expected = "  def new\n" <<
@@ -86,6 +102,16 @@ end
 Then /^a "show" controller action for "posts" should be generated$/ do
   assert_generated_controller_for("posts") do |body|
     expected = "  def show\n" <<
+               "    @post = Post.find(params[:id])\n" <<
+               "  end"
+    assert body.include?(expected), 
+      "expected #{expected} but was #{body.inspect}"
+  end
+end
+
+Then /^a "edit" controller action for "posts" should be generated$/ do
+  assert_generated_controller_for("posts") do |body|
+    expected = "  def edit\n" <<
                "    @post = Post.find(params[:id])\n" <<
                "  end"
     assert body.include?(expected), 
