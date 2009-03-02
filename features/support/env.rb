@@ -61,8 +61,8 @@ module Test::Unit::Assertions
   end
 
   def assert_generated_migration(name)
-    file = Dir.glob("#{@rails_root}/db/migrate/*_#{name.to_s.underscore}.rb").first
-    file = file.match(/db\/migrate\/[0-9]+_\w+/).to_s
+    file = Dir.glob("#{@rails_root}/db/migrate/*_#{name}.rb").first
+    file = file.match(/db\/migrate\/[0-9]+_\w+/).to_s << ".rb"
     assert_generated_file file do |body|
       assert_match /timestamps/, body, "should have timestamps defined"
       yield body if block_given?

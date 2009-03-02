@@ -74,6 +74,12 @@ Then /^the "(.*)" unit test should have "(.*)" macro$/ do |model, macro|
   end
 end
 
+Then /^the "(.*)" table should have db index on "(.*)"$/ do |table, foreign_key|
+  assert_generated_migration(table) do |body|
+    index = "add_index :#{table}, :#{foreign_key}"
+    assert body.include?(index), body.inspect
+  end
+end
 
 After do
   FileUtils.rm_rf @rails_root if @rails_root

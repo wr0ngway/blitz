@@ -51,7 +51,7 @@ h2. belongs_to
 end
 
 class Post < ActiveRecord::Base
-   belongs_to :user
+  belongs_to :user
 end
 
 class PostTest < ActiveSupport::TestCase

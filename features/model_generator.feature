@@ -24,4 +24,5 @@ Feature: Rails model generator
     Then a factory for "Post" should have an association to "User"
     And the "Post" unit test should have "should_belong_to :user" macro
     And the "Post" unit test should have "should_have_index :user_id" macro
+    And the "posts" table should have db index on "user_id"
 
