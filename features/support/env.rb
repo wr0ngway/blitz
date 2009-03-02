@@ -38,6 +38,12 @@ module Test::Unit::Assertions
     end
   end
 
+  def assert_generated_helper_test_for(name)
+    assert_generated_file "test/unit/helpers/#{name}_helper_test.rb" do |body|
+      yield body if block_given?
+    end
+  end
+
   def assert_generated_file(path)
     assert_file_exists(path)
     File.open(File.join(@rails_root, path)) do |file|
@@ -54,7 +60,7 @@ module Test::Unit::Assertions
 
   def assert_generated_views_for(name, *actions)
     actions.each do |action|
-      assert_generated_file("app/views/#{name.to_s.underscore}/#{action}") do |body|
+      assert_generated_file("app/views/#{name}/#{action}.html.erb") do |body|
         yield body if block_given?
       end
     end
@@ -75,6 +81,15 @@ module Test::Unit::Assertions
         "should add route for :#{name.to_s.underscore}"
     end
   end
+
+  def assert_has_empty_method(body, *methods)
+    methods.each do |name|
+      assert body.include?("  def #{name}\n  end"), 
+        "should have method #{name} in #{body.inspect}"
+      yield(name, $2) if block_given?
+    end
+  end
+
 end
 
 World do |world|

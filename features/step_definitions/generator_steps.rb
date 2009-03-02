@@ -29,6 +29,18 @@ When /^I generate a model "(.*)" that belongs to a "(.*)"$/ do |model, associati
          "cd .."
 end
 
+When /^I generate a "(.*)" controller with "(.*)" action$/ do |controller, action|
+  system "cd #{@rails_root} && " <<
+         "script/generate controller #{controller} #{action} && " <<
+         "cd .."
+end
+
+When /^I generate a helper named "(.*)"$/ do |name|
+  system "cd #{@rails_root} && " <<
+         "script/generate helper #{name} && " <<
+         "cd .."
+end
+
 Then /^a factory should be generated for "(.*)"$/ do |model|
   model.downcase!
   assert_generated_factory_for(model) do |body|
@@ -79,6 +91,36 @@ Then /^the "(.*)" table should have db index on "(.*)"$/ do |table, foreign_key|
     index = "add_index :#{table}, :#{foreign_key}"
     assert body.include?(index), body.inspect
   end
+end
+
+Then /^a standard "index" functional test for "(.*)" should be generated$/ do |controller|
+  assert_generated_functional_test_for(controller) do |body|
+    expected = "  context 'GET to index' do\n" <<
+               "    setup { get :index }\n\n" <<
+               "    should_respond_with :success\n" <<
+               "    should_render_template :index\n" <<
+               "    should_assign_to :#{controller}\n" <<
+               "  end"
+    assert body.include?(expected), body.inspect
+  end
+end
+
+Then /^an empty "(.*)" view for "(.*)" should be generated$/ do |index, controller|
+  assert_generated_views_for(controller, index)
+end
+
+Then /^an empty "(.*)" controller action for "(.*)" should be generated$/ do |action, controller|
+  assert_generated_controller_for(controller) do |body|
+    assert_has_empty_method(body, action)
+  end
+end
+
+Then /^a helper should be generated for "(.*)"$/ do |name|
+  assert_generated_helper_for(name)
+end
+
+Then /^a helper test should be generated for "(.*)"$/ do |name|
+  assert_generated_helper_test_for(name)
 end
 
 After do
