@@ -9,6 +9,7 @@ Feature: Rails model generator
     When I generate a model named "User"
     Then a factory should be generated for "User"
     And a unit test should be generated for "User"
+    And a model with comments should be generated for "User"
 
   Scenario: Model generator with attributes
     Given a Rails app

@@ -55,6 +55,22 @@ Then /^a unit test should be generated for "(.*)"$/ do |model|
   end
 end
 
+Then /^a model with comments should be generated for "(.*)"$/ do |model|
+  model.downcase!
+  assert_generated_model_for(model) do |body|
+    comments = []
+    comments << "# includes: mixed in behavior" <<
+                "# properties: attributes, associations" <<
+                "# lifecycle: validations, callbacks" <<
+                "# class methods: self.method, named_scopes" <<
+                "# instance methods" <<
+                "# non-public interface: protected helpers"
+    comments.each do |comment|
+      assert body.include?(comment), body.inspect
+    end
+  end
+end
+
 Then /^the "(.*)" unit test should have "(.*)" macro$/ do |model, macro|
   model.downcase!
   assert_generated_unit_test_for(model) do |body|
