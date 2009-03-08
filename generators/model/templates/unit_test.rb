@@ -5,12 +5,12 @@ class <%= class_name %>Test < ActiveSupport::TestCase
     assert_valid Factory.build(:<%= file_name -%>)
   end
 <% attributes.each do |attribute| -%>
-  <% if attribute.reference? -%>
+<% if attribute.reference? -%>
   should_belong_to :<%= attribute.name %>
   should_have_index :<%= attribute.name %>_id
-  <% end -%>
-  <% if attribute.type == :paperclip -%>
+<% end -%>
+<% if attribute.type == :paperclip -%>
   should_have_attached_file :<%= attribute.name %>
-  <% end -%>
+<% end -%>
 <% end -%> 
 end

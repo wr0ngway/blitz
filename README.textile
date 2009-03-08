@@ -41,7 +41,7 @@ h2. View generator
 
 * not sure about this one yet
 
-h2. Special attribute for model generator: belongs_to
+h2. Model generator: belongs_to
 
     $ script/generate model post user:belongs_to
 
@@ -77,6 +77,41 @@ end
 
 Factory.define :post do |post|
   post.association(:user)
+end</code></pre>
+
+h2. Model generator: paperclip
+
+    $ script/generate model design image:paperclip
+
+* all the necessary columns in the migration
+* "has_attached_file" in the model
+* "should_have_attached_file" in unit test
+
+<pre><code>class CreateDesigns < ActiveRecord::Migration
+  def self.up
+    create_table :designs do |t|
+      t.string :image_file_name
+      t.string :image_content_type
+      t.integer :image_file_size
+      t.datetime :image_updated_at
+      t.timestamps
+    end
+  end
+
+  def self.down
+    drop_table :designs
+  end
+end
+
+class Design < ActiveRecord::Base
+  has_attached_file :image
+end
+
+class DesignTest < ActiveSupport::TestCase
+  should "be valid with factory" do
+    assert_valid Factory.build(:design)
+  end
+  should_have_attached_file :image
 end</code></pre>
 
 h2. Attribution
