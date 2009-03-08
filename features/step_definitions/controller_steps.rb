@@ -37,7 +37,7 @@ Then /^a standard "create" functional test for "posts" should be generated$/ do
                "    end\n\n" <<
                "    should_change 'Post.count', :by => 1\n" <<
                "    should_set_the_flash_to /created/i\n" <<
-               "    should_redirect_to 'posts_path'\n" <<
+               "    should_redirect_to('posts index') { posts_path }\n" <<
                "  end"
     assert body.include?(expected), 
       "expected #{expected} but was #{body.inspect}"
@@ -85,7 +85,7 @@ Then /^a standard "update" functional test for "posts" should be generated$/ do
                "        :post => Factory.attributes_for(:post)\n" <<
                "    end\n\n" <<
                "    should_set_the_flash_to /updated/i\n" <<
-               "    should_redirect_to 'posts_path'\n" <<
+               "    should_redirect_to('posts index') { posts_path }\n" <<
                "  end"
     assert body.include?(expected), 
       "expected #{expected} but was #{body.inspect}"
@@ -101,7 +101,7 @@ Then /^a standard "destroy" functional test for "posts" should be generated$/ do
                "    end\n\n" <<
                "    should_change 'Post.count', :from => 1, :to => 0\n" <<
                "    should_set_the_flash_to /deleted/i\n" <<
-               "    should_redirect_to 'posts_path'\n" <<
+               "    should_redirect_to('posts index') { posts_path }\n" <<
                "  end"
     assert body.include?(expected), 
       "expected #{expected} but was #{body.inspect}"

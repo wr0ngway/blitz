@@ -32,7 +32,7 @@ class <%= class_name %>ControllerTest < ActionController::TestCase
 
     should_change '<%= resource_class %>.count', :by => 1
     should_set_the_flash_to /created/i
-    should_redirect_to '<%= resources %>_path'
+    should_redirect_to('<%= resources %> index') { <%= resources %>_path }
   end
 
 <% end -%>
@@ -71,7 +71,7 @@ class <%= class_name %>ControllerTest < ActionController::TestCase
     end
 
     should_set_the_flash_to /updated/i
-    should_redirect_to '<%= resources %>_path'
+    should_redirect_to('<%= resources %> index') { <%= resources %>_path }
   end
 
 <% end -%>
@@ -84,7 +84,7 @@ class <%= class_name %>ControllerTest < ActionController::TestCase
 
     should_change '<%= resource_class %>.count', :from => 1, :to => 0
     should_set_the_flash_to /deleted/i
-    should_redirect_to '<%= resources %>_path'
+    should_redirect_to('<%= resources %> index') { <%= resources %>_path }
   end
 
 <% end -%>
