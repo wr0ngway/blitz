@@ -1,18 +1,8 @@
 class <%= class_name %> < ActiveRecord::Base
-
-  # includes: mixed in behavior
-
-  # properties: attributes, associations
-<% attributes.select(&:reference?).each do |attribute| -%>
-  belongs_to :<%= attribute.name %>
+<% attributes.select(&:reference?).each do |each| -%>
+  belongs_to :<%= each.name %>
 <% end -%>
-
-  # lifecycle: validations, callbacks
-
-  # class methods: self.method, named_scopes
-
-  # instance methods
-
-  # non-public interface: protected helpers
-
+<% attributes.select { |each| each.type == :paperclip }.each do |each| -%>
+  has_attached_file :<%= each.name %>
+<% end -%>
 end

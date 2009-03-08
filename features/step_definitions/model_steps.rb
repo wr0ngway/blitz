@@ -1,3 +1,5 @@
+# GENERATION
+
 When /^I generate a model named "(.*)"$/ do |model|
   system "cd #{@rails_root} && " <<
          "script/generate model #{model} && " <<
@@ -16,6 +18,40 @@ When /^I generate a model "(.*)" that belongs to a "(.*)"$/ do |model, associati
          "script/generate model #{model} #{association}:belongs_to && " <<
          "cd .."
 end
+
+When /^I generate a model "(.*)" with file "(.*)"$/ do |model, file|
+  file.downcase!
+  system "cd #{@rails_root} && " <<
+         "script/generate model #{model} #{file}:paperclip && " <<
+         "cd .."
+end
+
+# MODEL
+
+Then /^a model with comments should be generated for "(.*)"$/ do |model|
+  model.downcase!
+  assert_generated_model_for(model) do |body|
+    comments = []
+    comments << "# includes: mixed in behavior" <<
+                "# properties: attributes, associations" <<
+                "# lifecycle: validations, callbacks" <<
+                "# class methods: self.method, named_scopes" <<
+                "# instance methods" <<
+                "# non-public interface: protected helpers"
+    comments.each do |comment|
+      assert body.include?(comment), body.inspect
+    end
+  end
+end
+
+Then /^the "(.*)" model should have "(.*)" macro$/ do |model, macro|
+  model.downcase!
+  assert_generated_model_for(model) do |body|
+    assert body.include?(macro), body.inspect
+  end
+end
+
+# FACTORY
 
 Then /^a factory should be generated for "(.*)"$/ do |model|
   model.downcase!
@@ -47,27 +83,13 @@ Then /^a factory for "(.*)" should have an association to "(.*)"$/ do |model, as
   end
 end
 
+# UNIT TEST
+
 Then /^a unit test should be generated for "(.*)"$/ do |model|
   model.downcase!
   assert_generated_unit_test_for(model) do |body|
     match = "assert_valid Factory.build(:#{model})"
     assert body.include?(match), body.inspect
-  end
-end
-
-Then /^a model with comments should be generated for "(.*)"$/ do |model|
-  model.downcase!
-  assert_generated_model_for(model) do |body|
-    comments = []
-    comments << "# includes: mixed in behavior" <<
-                "# properties: attributes, associations" <<
-                "# lifecycle: validations, callbacks" <<
-                "# class methods: self.method, named_scopes" <<
-                "# instance methods" <<
-                "# non-public interface: protected helpers"
-    comments.each do |comment|
-      assert body.include?(comment), body.inspect
-    end
   end
 end
 
@@ -78,10 +100,23 @@ Then /^the "(.*)" unit test should have "(.*)" macro$/ do |model, macro|
   end
 end
 
+# MIGRATION
+
 Then /^the "(.*)" table should have db index on "(.*)"$/ do |table, foreign_key|
   assert_generated_migration(table) do |body|
     index = "add_index :#{table}, :#{foreign_key}"
     assert body.include?(index), body.inspect
   end
 end
+
+Then /^the "(.*)" table should have paperclip columns for "(.*)"$/ do |table, attr|
+  up   = "      t.string :#{attr}_file_name\n"  <<
+         "      t.string :#{attr}_content_type\n"  <<
+         "      t.integer :#{attr}_file_size\n" <<
+         "      t.datetime :#{attr}_updated_at"
+  assert_generated_migration(table) do |body|
+    assert body.include?(up), body.inspect
+  end
+end
+
 

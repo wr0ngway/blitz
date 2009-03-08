@@ -9,7 +9,6 @@ Feature: Rails model generator
     When I generate a model named "User"
     Then a factory should be generated for "User"
     And a unit test should be generated for "User"
-    And a model with comments should be generated for "User"
 
   Scenario: Model generator with attributes
     Given a Rails app
@@ -26,4 +25,13 @@ Feature: Rails model generator
     And the "Post" unit test should have "should_belong_to :user" macro
     And the "Post" unit test should have "should_have_index :user_id" macro
     And the "posts" table should have db index on "user_id"
+    And the "Post" model should have "belongs_to :user" macro
+
+  Scenario: Model generator with Paperclip
+    Given a Rails app
+    And the coulda plugin is installed
+    When I generate a model "Design" with file "Image"
+    Then the "Design" model should have "has_attached_file :image" macro
+    And the "Design" unit test should have "should_have_attached_file :image" macro
+    And the "designs" table should have paperclip columns for "image"
 
