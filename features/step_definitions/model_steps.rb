@@ -110,10 +110,10 @@ Then /^the "(.*)" table should have db index on "(.*)"$/ do |table, foreign_key|
 end
 
 Then /^the "(.*)" table should have paperclip columns for "(.*)"$/ do |table, attr|
-  up   = "      t.string :#{attr}_file_name\n"  <<
-         "      t.string :#{attr}_content_type\n"  <<
-         "      t.integer :#{attr}_file_size\n" <<
-         "      t.datetime :#{attr}_updated_at"
+  up   = "      table.string :#{attr}_file_name\n"  <<
+         "      table.string :#{attr}_content_type\n"  <<
+         "      table.integer :#{attr}_file_size\n" <<
+         "      table.datetime :#{attr}_updated_at"
   assert_generated_migration(table) do |body|
     assert body.include?(up), body.inspect
   end
