@@ -1,6 +1,6 @@
 h1. Coulda generators
 
-A plugin that overrides Rails' model, controller, & helper generators. It also adds a view generator. It uses Shoulda, Factory Girl, & the latest "best practice patterns".
+A plugin that overrides Rails' model, controller, & helper generators. It also adds a view generator. It uses Shoulda & Factory Girl for tests.
 
 h2. Requirements
 
@@ -9,7 +9,7 @@ h2. Requirements
 
 h2. Installation
 
-    $ script/plugin install git://github.com/hardbap/coulda.git
+    $ script/plugin install git://github.com/dancroak/coulda.git
 
 h2. Model generator
 
@@ -39,7 +39,7 @@ h2. View generator
 
     $ script/generate view Posts new
 
-* not sure about this one yet
+* We're not sure we like this one yet. Let us know what you think.
 
 h2. Model generator: belongs_to
 
