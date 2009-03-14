@@ -76,15 +76,15 @@ class <%= class_name %>ControllerTest < ActionController::TestCase
 
 <% end -%>
 <% if actions.include?("destroy") -%>
-  context 'DELETE to destroy' do
-    setup do
-      @<%= resource %> = Factory(:<%= resource %>)
-      delete :destroy, :id => @<%= resource %>.to_param
-    end
+  context 'given a <%= resource %>' do
+    setup { @<%= resource %> = Factory(:<%= resource %>) }
 
-    should_change '<%= resource_class %>.count', :from => 1, :to => 0
-    should_set_the_flash_to /deleted/i
-    should_redirect_to('<%= resources %> index') { <%= resources %>_path }
+    context 'DELETE to destroy' do
+      setup { delete :destroy, :id => @<%= resource %>.to_param }
+      should_change '<%= resource_class %>.count', :from => 1, :to => 0
+      should_set_the_flash_to /deleted/i
+      should_redirect_to('<%= resources %> index') { <%= resources %>_path }
+    end
   end
 
 <% end -%>

@@ -94,14 +94,14 @@ end
 
 Then /^a standard "destroy" functional test for "posts" should be generated$/ do
   assert_generated_functional_test_for("posts") do |body|
-    expected = "  context 'DELETE to destroy' do\n" <<
-               "    setup do\n" <<
-               "      @post = Factory(:post)\n" <<
-               "      delete :destroy, :id => @post.to_param\n" <<
-               "    end\n\n" <<
-               "    should_change 'Post.count', :from => 1, :to => 0\n" <<
-               "    should_set_the_flash_to /deleted/i\n" <<
-               "    should_redirect_to('posts index') { posts_path }\n" <<
+    expected = "  context 'given a post' do\n" <<
+               "    setup { @post = Factory(:post) }\n\n" <<
+               "    context 'DELETE to destroy' do\n" <<
+               "      setup { delete :destroy, :id => @post.to_param }\n" <<
+               "      should_change 'Post.count', :from => 1, :to => 0\n" <<
+               "      should_set_the_flash_to /deleted/i\n" <<
+               "      should_redirect_to('posts index') { posts_path }\n" <<
+               "    end\n" <<
                "  end"
     assert body.include?(expected), 
       "expected #{expected} but was #{body.inspect}"
