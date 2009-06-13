@@ -75,10 +75,12 @@ module Test::Unit::Assertions
     end
   end
 
-  def assert_generated_route_for(name)
+  def assert_generated_route_for(name, *actions)
     assert_generated_file("config/routes.rb") do |body|
-      assert_match /map.resources :#{name.to_s.underscore}/, body,
-        "should add route for :#{name.to_s.underscore}"
+      routeable_actions = actions.collect { |action| ":#{action}" }.join(", ")
+      expected = "  map.resources :#{name.to_s}, :only => [#{routeable_actions}]"
+      assert body.include?(expected),
+        "expected #{expected} but was #{body.inspect}"
     end
   end
 

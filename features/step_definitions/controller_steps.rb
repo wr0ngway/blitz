@@ -4,8 +4,8 @@ When /^I generate a "(.*)" controller with "(.*)" action$/ do |controller, actio
          "cd .."
 end
 
-Then /^a standard "index" functional test for "(.*)" should be generated$/ do |controller|
-  assert_generated_functional_test_for(controller) do |body|
+Then /^a standard "index" functional test for "posts" should be generated$/ do
+  assert_generated_functional_test_for("posts") do |body|
     expected = "  context 'GET to index' do\n" <<
                "    setup { get :index }\n\n" <<
                "    should_render_template :index\n" <<
@@ -181,5 +181,9 @@ Then /^an empty "(.*)" controller action for "(.*)" should be generated$/ do |ac
   assert_generated_controller_for(controller) do |body|
     assert_has_empty_method(body, action)
   end
+end
+
+Then /^only a "([^\"]*)" action for RESTful "([^\"]*)" route should be generated$/ do |action, resource|
+  assert_generated_route_for resource, action
 end
 

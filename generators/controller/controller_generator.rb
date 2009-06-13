@@ -1,14 +1,13 @@
+require File.join(File.dirname(__FILE__), "..", "support", "insert_commands")
+
 class ControllerGenerator < Rails::Generator::NamedBase
   def manifest
     record do |m|
-      # Check for class naming collisions.
       m.class_collisions "#{class_name}Controller", "#{class_name}ControllerTest"
 
-      # Controller and test directories.
       m.directory File.join('app/controllers', class_path)
       m.directory File.join('test/functional', class_path)
 
-      # Controller class and functional test.
       m.template 'controller.rb',
                   File.join('app/controllers',
                             class_path,
@@ -18,6 +17,13 @@ class ControllerGenerator < Rails::Generator::NamedBase
                   File.join('test/functional',
                             class_path,
                             "#{file_name}_controller_test.rb")
+
+      m.insert_into "config/routes.rb",
+                    "map.resources :#{file_name}, :only => [#{routeable_actions}]"
     end
+  end
+
+  def routeable_actions
+    actions.collect { |action| ":#{action}" }.join(", ")
   end
 end
