@@ -98,7 +98,7 @@ Then /^a standard "destroy" functional test for "posts" should be generated$/ do
                "    setup { @post = Factory(:post) }\n\n" <<
                "    context 'DELETE to destroy' do\n" <<
                "      setup { delete :destroy, :id => @post.to_param }\n" <<
-               "      should_change 'Post.count', :from => 1, :to => 0\n" <<
+               "      should_destroy :post\n" <<
                "      should_set_the_flash_to /deleted/i\n" <<
                "      should_redirect_to('posts index') { posts_path }\n" <<
                "    end\n" <<

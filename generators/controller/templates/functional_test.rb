@@ -81,7 +81,7 @@ class <%= class_name %>ControllerTest < ActionController::TestCase
 
     context 'DELETE to destroy' do
       setup { delete :destroy, :id => @<%= resource %>.to_param }
-      should_change '<%= resource_class %>.count', :from => 1, :to => 0
+      should_destroy :<%= resource %>
       should_set_the_flash_to /deleted/i
       should_redirect_to('<%= resources %> index') { <%= resources %>_path }
     end
