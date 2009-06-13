@@ -18,9 +18,9 @@ class <%= class_name %>ControllerTest < ActionController::TestCase
   context 'GET to new' do
     setup { get :new }
 
-    should_respond_with :success
+    should_assign_to       :<%= resource %>
     should_render_template :new
-    should_assign_to :<%= resource %>
+    should_respond_with    :success
   end
 
 <% end -%>
@@ -56,9 +56,9 @@ class <%= class_name %>ControllerTest < ActionController::TestCase
       get :edit, :id => @<%= resource %>.to_param
     end
 
-    should_respond_with :success
+    should_assign_to       :<%= resource %>, :equals => '@<%= resource %>'
     should_render_template :edit
-    should_assign_to :<%= resource %>, :equals => '@<%= resource %>'
+    should_respond_with    :success
   end
 
 <% end -%>

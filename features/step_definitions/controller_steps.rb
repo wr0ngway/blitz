@@ -20,9 +20,9 @@ Then /^a standard "new" functional test for "posts" should be generated$/ do
   assert_generated_functional_test_for("posts") do |body|
     expected = "  context 'GET to new' do\n" <<
                "    setup { get :new }\n\n" <<
-               "    should_respond_with :success\n" <<
+               "    should_assign_to       :post\n" <<
                "    should_render_template :new\n" <<
-               "    should_assign_to :post\n" <<
+               "    should_respond_with    :success\n" <<
                "  end"
     assert body.include?(expected), 
       "expected #{expected} but was #{body.inspect}"
@@ -67,9 +67,9 @@ Then /^a standard "edit" functional test for "posts" should be generated$/ do
                "      @post = Factory(:post)\n" <<
                "      get :edit, :id => @post.to_param\n" <<
                "    end\n\n" <<
-               "    should_respond_with :success\n" <<
+               "    should_assign_to       :post, :equals => '@post'\n" <<
                "    should_render_template :edit\n" <<
-               "    should_assign_to :post, :equals => '@post'\n" <<
+               "    should_respond_with    :success\n" <<
                "  end"
     assert body.include?(expected), 
       "expected #{expected} but was #{body.inspect}"
