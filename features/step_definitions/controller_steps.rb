@@ -8,8 +8,8 @@ Then /^a standard "index" functional test for "(.*)" should be generated$/ do |c
   assert_generated_functional_test_for(controller) do |body|
     expected = "  context 'GET to index' do\n" <<
                "    setup { get :index }\n\n" <<
-               "    should_respond_with :success\n" <<
                "    should_render_template :index\n" <<
+               "    should_respond_with    :success\n" <<
                "  end"
     assert body.include?(expected), 
       "expected #{expected} but was #{body.inspect}"
@@ -51,9 +51,9 @@ Then /^a standard "show" functional test for "posts" should be generated$/ do
                "      @post = Factory(:post)\n" <<
                "      get :show, :id => @post.to_param\n" <<
                "    end\n\n" <<
-               "    should_respond_with :success\n" <<
+               "    should_assign_to       :post, :equals => '@post'\n" <<
                "    should_render_template :show\n" <<
-               "    should_assign_to :post, :equals => '@post'\n" <<
+               "    should_respond_with    :success\n" <<
                "  end"
     assert body.include?(expected), 
       "expected #{expected} but was #{body.inspect}"
@@ -97,7 +97,7 @@ Then /^a standard "destroy" functional test for "posts" should be generated$/ do
     expected = "  context 'given a post' do\n" <<
                "    setup { @post = Factory(:post) }\n\n" <<
                "    context 'DELETE to destroy' do\n" <<
-               "      setup { delete :destroy, :id => @post.to_param }\n" <<
+               "      setup { delete :destroy, :id => @post.to_param }\n\n" <<
                "      should_destroy :post\n" <<
                "      should_set_the_flash_to /deleted/i\n" <<
                "      should_redirect_to('posts index') { posts_path }\n" <<

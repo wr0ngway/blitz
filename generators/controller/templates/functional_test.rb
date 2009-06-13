@@ -9,8 +9,8 @@ class <%= class_name %>ControllerTest < ActionController::TestCase
   context 'GET to index' do
     setup { get :index }
 
-    should_respond_with :success
     should_render_template :index
+    should_respond_with    :success
   end
 
 <% end -%>
@@ -43,9 +43,9 @@ class <%= class_name %>ControllerTest < ActionController::TestCase
       get :show, :id => @<%= resource %>.to_param
     end
 
-    should_respond_with :success
+    should_assign_to       :<%= resource %>, :equals => '@<%= resource %>'
     should_render_template :show
-    should_assign_to :<%= resource %>, :equals => '@<%= resource %>'
+    should_respond_with    :success
   end
 
 <% end -%>
@@ -81,6 +81,7 @@ class <%= class_name %>ControllerTest < ActionController::TestCase
 
     context 'DELETE to destroy' do
       setup { delete :destroy, :id => @<%= resource %>.to_param }
+
       should_destroy :<%= resource %>
       should_set_the_flash_to /deleted/i
       should_redirect_to('<%= resources %> index') { <%= resources %>_path }

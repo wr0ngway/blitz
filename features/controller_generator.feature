@@ -1,7 +1,7 @@
 Feature: Rails controller generator
   In order to better do Test-Driven Development with Rails
   As a user
-  I want to generate Shoulda & Factory Girl tests for only RESTful action I need.
+  I want to generate Shoulda & Factory Girl tests for only RESTful actions I need.
 
   Scenario: Controller generator for index action
     Given a Rails app
