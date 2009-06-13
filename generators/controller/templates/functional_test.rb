@@ -30,7 +30,7 @@ class <%= class_name %>ControllerTest < ActionController::TestCase
       post :create, :<%= resource %> => Factory.attributes_for(:<%= resource %>)
     end
 
-    should_change '<%= resource_class %>.count', :by => 1
+    should_create :<%= resource %>
     should_set_the_flash_to /created/i
     should_redirect_to('<%= resources %> index') { <%= resources %>_path }
   end

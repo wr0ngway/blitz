@@ -92,8 +92,11 @@ module Test::Unit::Assertions
 
 end
 
-World do |world|
-  world.extend(Test::Unit::Assertions)
-  world
+class CouldaWorld
+  include Test::Unit::Assertions
+end
+
+World do
+  CouldaWorld.new
 end
 
