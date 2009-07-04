@@ -1,15 +1,32 @@
 h1. Coulda generators
 
-A plugin that overrides Rails' model, controller, & helper generators. It also adds a view generator. It uses Shoulda & Factory Girl for tests.
+A Rails plugin for feature, view, controller, model, & helper generators. It is meant to be used as part of an "Outside-In" Test-Driven Development cycle.
 
 h2. Requirements
 
+* "Cucumber":http://github.com/aslakhellesoy/cucumber
 * "Shoulda":http://github.com/thoughtbot/shoulda
 * "Factory Girl":http://github.com/thoughtbot/factory_girl
+* "Mocha":http://github.com/jferris/mocha
 
 h2. Installation
 
     $ script/plugin install git://github.com/dancroak/coulda.git
+
+h2. Feature generator
+
+    $ script/generate feature Posts new create
+
+generates...
+
+<pre><code>  Scenario: Create a new post
+    Given I am on the new post page
+    When I create a 'post' named 'A new post'
+    Then I should see 'A new post'</code></pre>
+
+Now run it:
+
+    $ cucumber features/posts.feature
 
 h2. Model generator
 
@@ -39,16 +56,11 @@ h2. View generator
 
     $ script/generate view Posts new
 
-* We're not sure we like this one yet. Let us know what you think.
-
 h2. Model generator: belongs_to
 
     $ script/generate model post user:belongs_to
 
-* "add_index" in the migration
-* "belongs_to" in the model
-* "should_belong_to" in unit test
-* association in the factory
+generates...
 
 <pre><code>class CreatePosts < ActiveRecord::Migration
   def self.up
