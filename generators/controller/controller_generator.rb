@@ -1,4 +1,4 @@
-require File.join(File.dirname(__FILE__), "..", "support", "insert_commands")
+require File.join(File.dirname(__FILE__), "..", "support", "generator_helper")
 
 class ControllerGenerator < Rails::Generator::NamedBase
   def manifest
