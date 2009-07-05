@@ -13,7 +13,7 @@ Rails::Generator::Commands::Create.class_eval do
       gsub_file file, /^(class|module|#{Coulda::Insertable.routes}) .+$/ do |match|
         "#{match}\n  #{line}"
       end
-      gsub_file file, /^#{Coulda::Insertable.cucumber_paths}/ do |match|
+      gsub_file file, /#{Coulda::Insertable.cucumber_paths}/ do |match|
         "#{match}\n#{line}"
       end
     end
