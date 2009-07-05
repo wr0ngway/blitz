@@ -9,9 +9,12 @@ end
 Rails::Generator::Commands::Create.class_eval do
   def insert_into(file, line)
     logger.insert "#{line} into #{file}"
-    unless options[:pretend] || file_contains?(file, line)
-      gsub_file file, /^(class|module|#{Coulda::Insertable.routes}|#{Coulda::Insertable.cucumber_paths}) .+$/ do |match|
+    unless file_contains?(file, line)
+      gsub_file file, /^(class|module|#{Coulda::Insertable.routes}) .+$/ do |match|
         "#{match}\n  #{line}"
+      end
+      gsub_file file, /^#{Coulda::Insertable.cucumber_paths}/ do |match|
+        "#{match}\n#{line}"
       end
     end
   end
@@ -20,9 +23,7 @@ end
 Rails::Generator::Commands::Destroy.class_eval do
   def insert_into(file, line)
     logger.remove "#{line} from #{file}"
-    unless options[:pretend]
-      gsub_file file, "\n  #{line}", ''
-    end
+    gsub_file file, "\n  #{line}", ''
   end
 end
 
@@ -41,7 +42,7 @@ module Coulda
     def self.cucumber_paths
       "module NavigationHelpers\n" <<
       "  def path_to(page_name)\n" <<
-      "    case page_name"
+      "    case page_name\n"
     end
   end
 end
