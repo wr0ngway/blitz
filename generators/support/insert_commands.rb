@@ -40,9 +40,7 @@ module Coulda
     end
 
     def self.cucumber_paths
-      "module NavigationHelpers\n" <<
-      "  def path_to(page_name)\n" <<
-      "    case page_name\n"
+      "case page_name\n"
     end
   end
 end
