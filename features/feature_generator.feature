@@ -8,5 +8,5 @@ Feature: Rails controller generator
     And the coulda plugin is installed
     When I generate a "create" feature for "Posts"
     Then a "posts" feature for the "create" scenario should be generated
-
+    And a "posts" step definition should be generated
 

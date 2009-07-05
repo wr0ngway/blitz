@@ -21,3 +21,14 @@ Then /^a "posts" feature for the "create" scenario should be generated$/ do
   end
 end
 
+Then /^a "posts" step definition should be generated$/ do
+  assert_generated_file("features/step_definitions/posts_steps.rb") do |body|
+    expected = "When /^I create a post named \"([^\\\"]*)\"$/ do |name|\n" <<
+               "  fills_in :name, :with => name\n" <<
+               "  click_button 'Create'\n"
+               "end"
+    assert body.include?(expected), 
+      "expected #{expected} but was #{body.inspect}"
+  end
+end
+
