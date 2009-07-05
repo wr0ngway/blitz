@@ -10,8 +10,7 @@ Rails::Generator::Commands::Create.class_eval do
   def insert_into(file, line)
     logger.insert "#{line} into #{file}"
     unless options[:pretend] || file_contains?(file, line)
-      start_of_routes_file = "ActionController::Routing::Routes.draw"
-      gsub_file file, /^(class|module|#{start_of_routes_file}) .+$/ do |match|
+      gsub_file file, /^(class|module|#{Coulda::Insertable.routes}|#{Coulda::Insertable.cucumber_paths}) .+$/ do |match|
         "#{match}\n  #{line}"
       end
     end
@@ -30,6 +29,20 @@ end
 Rails::Generator::Commands::List.class_eval do
   def insert_into(file, line)
     logger.insert "#{line} into #{file}"
+  end
+end
+
+module Coulda
+  module Insertable
+    def self.routes
+      "ActionController::Routing::Routes.draw"
+    end
+
+    def self.cucumber_paths
+      "module NavigationHelpers\n" <<
+      "  def path_to(page_name)\n" <<
+      "    case page_name"
+    end
   end
 end
 

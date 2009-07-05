@@ -2,6 +2,7 @@ Given /^a Rails app with Cucumber$/ do
   system "rails rails_root"
   @rails_root = File.join(File.dirname(__FILE__), "..", "..", "rails_root")
   require 'cucumber'
+  system "cd #{@rails_root} && ruby script/generate cucumber"
 end
 
 When /^I generate a "([^\"]*)" feature for "([^\"]*)"$/ do |feature, resource|
@@ -27,6 +28,13 @@ Then /^a "posts" step definition should be generated$/ do
     "  fills_in :name, :with => name\n"                         <<
     "  click_button 'Create'\n"
     "end"
+  end
+end
+
+Then /^a new post page path should be generated$/ do
+  assert_generated_file("features/support/paths.rb") do
+    "    when /the new post page/i\n" <<
+    "      new_post_path"
   end
 end
 
