@@ -6,6 +6,13 @@ Feature: Rails controller generator
   Scenario: Feature generator for new action
     Given a Rails app with Cucumber
     And the coulda plugin is installed
+    When I generate a "new" feature for "Posts"
+    Then a "posts" feature for the "create" scenario should be generated
+    And a "posts" step definition should be generated
+
+  Scenario: Feature generator for create action same as new
+    Given a Rails app with Cucumber
+    And the coulda plugin is installed
     When I generate a "create" feature for "Posts"
     Then a "posts" feature for the "create" scenario should be generated
     And a "posts" step definition should be generated

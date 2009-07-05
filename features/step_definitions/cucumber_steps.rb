@@ -10,12 +10,14 @@ When /^I generate a "([^\"]*)" feature for "([^\"]*)"$/ do |feature, resource|
          "cd .."
 end
 
-Then /^a "posts" feature for the "create" scenario should be generated$/ do
-  assert_generated_file("features/posts.feature") do
-    "  Scenario: Create a new post\n"                 <<
-    "    Given I am on the new post page\n"           <<
-    "    When I create a 'post' named 'A new post'\n" <<
-    "    Then I should see 'A new post'"
+Then /^a "posts" feature for the "([^\"]*)" scenario should be generated$/ do |action|
+  if %w(new create).include?(action)
+    assert_generated_file("features/posts.feature") do
+      "  Scenario: Create a new post\n"                 <<
+      "    Given I am on the new post page\n"           <<
+      "    When I create a post named \"A new post\"\n" <<
+      "    Then I should see \"A new post\""
+    end
   end
 end
 
