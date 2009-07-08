@@ -12,3 +12,19 @@ Then /^the paperclip migration should add "(.*)" columns to the "(.*)"$/ do |att
     assert body.include?(down), body.inspect
   end
 end
+
+Then /^the "(.*)" table should have db index on "(.*)"$/ do |table, foreign_key|
+  assert_generated_migration(table) do
+    "add_index :#{table}, :#{foreign_key}"
+  end
+end
+
+Then /^the "(.*)" table should have paperclip columns for "(.*)"$/ do |table, attr|
+  assert_generated_migration(table) do
+    "      table.string :#{attr}_file_name\n"    <<
+    "      table.string :#{attr}_content_type\n" <<
+    "      table.integer :#{attr}_file_size\n"   <<
+    "      table.datetime :#{attr}_updated_at"
+  end
+end
+
