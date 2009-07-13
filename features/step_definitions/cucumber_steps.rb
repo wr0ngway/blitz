@@ -32,7 +32,7 @@ end
 Then /^a "create posts" step definition should be generated$/ do
   assert_generated_file("features/step_definitions/posts_steps.rb") do
     "When /^I create a post named \"([^\\\"]*)\"$/ do |name|\n" <<
-    "  fills_in :name, :with => name\n"                         <<
+    "  fill_in :name, :with => name\n"                         <<
     "  click_button 'Create'\n"
     "end"
   end
@@ -48,7 +48,7 @@ end
 Then /^a "update posts" step definition should be generated$/ do
   assert_generated_file("features/step_definitions/posts_steps.rb") do
     "When /^I update a post named \"([^\\\"]*)\"$/ do |name|\n" <<
-    "  fills_in :name, :with => name\n"                         <<
+    "  fill_in :name, :with => name\n"                         <<
     "  click_button 'Update'\n"
     "end"
   end
