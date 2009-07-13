@@ -2,5 +2,9 @@
 
 <%% form_for(@<%= resource %>) do |form| %>
   <%%= form.error_messages %>
-  <%%= form.submit 'Create', :disable_with => 'Please wait...' %>
+  <fieldset class="inputs">
+  </fieldset>
+  <fieldset class="buttons">
+    <%%= form.submit 'Create', :disable_with => 'Please wait...' %>
+  </fieldset>
 <%% end %>
