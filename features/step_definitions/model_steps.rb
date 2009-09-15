@@ -29,7 +29,7 @@ end
 When /^I generate a Post model with title, body, and User$/ do
   system "cd #{@rails_root} && " <<
     "script/generate model Post title:string body:text user:belongs_to && " <<
-    "rake db:migrate " <<
+    "rake db:migrate &&" <<
     "cd .."
 end
 
