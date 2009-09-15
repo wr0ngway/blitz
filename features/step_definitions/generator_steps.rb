@@ -1,6 +1,7 @@
 Given 'a Rails app' do
-  system "rails rails_root"
+  system "rails rails_root -d mysql"
   @rails_root = File.join(File.dirname(__FILE__), "..", "..", "rails_root")
+  system "cd #{@rails_root} && rake db:drop && rake db:create && RAILS_ENV=test rake db:create && cd .."
 end
 
 Given /^the blitz plugin is installed$/ do

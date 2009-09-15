@@ -1,6 +1,6 @@
 class <%= migration_name %> < ActiveRecord::Migration
   def self.up
-    create_table :<%= table_name %> do |table|
+    create_table :<%= table_name %>, :options => "DEFAULT CHARSET=UTF8 TYPE=InnoDB" do |table|
 <% attributes.each do |attribute| -%>
 <% if attribute.type == :paperclip -%>
       table.string :<%= attribute.name %>_file_name, :default => ""

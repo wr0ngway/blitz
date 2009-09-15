@@ -1,8 +1,8 @@
 Given /^a Rails app with Cucumber$/ do
-  system "rails rails_root"
+  system "rails rails_root -d mysql"
   @rails_root = File.join(File.dirname(__FILE__), "..", "..", "rails_root")
   require 'cucumber'
-  system "cd #{@rails_root} && ruby script/generate cucumber"
+  system "cd #{@rails_root} && rake db:drop && rake db:create && RAILS_ENV=test rake db:create && ruby script/generate cucumber && cd .."
 end
 
 When /^I generate a "([^\"]*)" feature for "([^\"]*)"$/ do |feature, resource|
