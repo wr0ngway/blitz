@@ -54,7 +54,7 @@ Then /^a standard "show" functional test for "posts" should be generated$/ do
     "    end\n\n"                                       <<
     "    should 'find post' do\n"                       <<
     "      assert_received(Post, :find) do |expects|\n" <<
-    "        expects.with(@post.id)\n"                  <<
+    "        expects.with(@post.to_param)\n"            <<
     "      end\n"                                       <<
     "    end\n\n"                                       <<
     "    should_render_template :show\n"                <<
@@ -73,7 +73,7 @@ Then /^a standard "edit" functional test for "posts" should be generated$/ do
     "    end\n\n"                                       <<
     "    should 'find post' do\n"                       <<
     "      assert_received(Post, :find) do |expects|\n" <<
-    "        expects.with(@post.id)\n"                  <<
+    "        expects.with(@post.to_param)\n"            <<
     "      end\n"                                       <<
     "    end\n\n"                                       <<
     "    should_render_template :edit\n"                <<

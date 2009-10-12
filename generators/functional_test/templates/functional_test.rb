@@ -41,7 +41,7 @@ class <%= class_name %>ControllerTest < ActionController::TestCase
 
     should 'find <%= resource %>' do
       assert_received(<%= resource_class %>, :find) do |expects|
-        expects.with(@<%= resource %>.id)
+        expects.with(@<%= resource %>.to_param)
       end
     end
 
@@ -60,7 +60,7 @@ class <%= class_name %>ControllerTest < ActionController::TestCase
 
     should 'find <%= resource %>' do
       assert_received(<%= resource_class %>, :find) do |expects|
-        expects.with(@<%= resource %>.id)
+        expects.with(@<%= resource %>.to_param)
       end
     end
 
