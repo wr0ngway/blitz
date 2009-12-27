@@ -1,5 +1,5 @@
 Given /^a Rails app with Cucumber$/ do
-  system "rails rails_root -d mysql"
+  system "rails rails_root"
   @rails_root = File.join(File.dirname(__FILE__), "..", "..", "rails_root")
   require 'cucumber'
   system "cd #{@rails_root} && rake db:drop && rake db:create && RAILS_ENV=test rake db:create && ruby script/generate cucumber && cd .."
