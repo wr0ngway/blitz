@@ -6,7 +6,8 @@ end
 
 Then /^a "(.*)" controller action for "posts" should be generated$/ do |action|
   assert_generated_file("app/controllers/posts_controller.rb") do
-    "  actions :#{action}"
+    "  def #{action}\n" <<
+    "  end"
   end
 end
 

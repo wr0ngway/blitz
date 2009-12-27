@@ -1,7 +1,6 @@
 require 'test/unit'
 
 module Test::Unit::Assertions
-
   def assert_generated_file(path)
     assert_file_exists(path)
     if block_given?
@@ -59,7 +58,6 @@ module Test::Unit::Assertions
       yield(name, $2) if block_given?
     end
   end
-
 end
 
 class BlitzWorld
