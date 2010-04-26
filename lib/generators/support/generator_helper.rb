@@ -1,4 +1,4 @@
-require File.join(File.dirname(__FILE__), "insert_commands")
+require 'rails/generators/named_base'
 
 module Blitz
   module GeneratorHelper
@@ -49,7 +49,7 @@ module Blitz
   end
 end
 
-class Rails::Generator::NamedBase
+class Rails::Generators::NamedBase
   include Blitz::GeneratorHelper
 end
 

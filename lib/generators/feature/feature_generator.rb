@@ -15,7 +15,7 @@ class FeatureGenerator < Rails::Generator::NamedBase
 
       if actions.any?
         path = File.join('features', 'support', "paths.rb")
-        m.insert_cucumber_path path, insertable_path
+        inject_into_file path, insertable_path, :after => "case page_name\n"
       end
     end
   end

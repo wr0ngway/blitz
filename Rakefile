@@ -15,7 +15,7 @@ begin
     gem.email = "wr0ngway@yahoo.com"
     gem.homepage = "http://github.com/wr0ngway/blitz"
     gem.authors = ["Matt Conway"]
-    gem.add_development_dependency "thoughtbot-shoulda", ">= 0"
+    gem.add_dependency 'railties', '>= 3.0.0.beta3'
     gem.files =  FileList["[A-Z][A-Z]*", "{generators,lib}/**/*"]
     # gem is a Gem::Specification... see http://www.rubygems.org/read/chapter/20 for additional settings
   end
