@@ -8,4 +8,11 @@ test/rails_root/log/*
 *.swp
 *.swo
 .idea
-
+*.tmproj
+tmtags
+*~
+\#*
+.\#*
+coverage
+rdoc
+pkg
