@@ -1,16 +1,18 @@
 require File.join(File.dirname(__FILE__), "..", "support", "generator_helper")
 
-class ControllerGenerator < Rails::Generator::NamedBase
+class ControllerGenerator < Rails::Generators::NamedBase
+  argument :actions, :type => :array, :default => [], :banner => "action action"
+
+  def self.source_root
+    File.expand_path(File.join(File.dirname(__FILE__), 'templates'))
+  end
+
   def manifest
-    record do |m|
-      m.class_collisions "#{class_name}Controller"
+    class_collisions "#{class_name}Controller"
 
-      m.directory File.join('app/controllers', class_path)
-
-      m.template 'controller.rb',
-                  File.join('app/controllers',
-                            class_path,
-                            "#{file_name}_controller.rb")
-    end
+    template 'controller.rb',
+             File.join('app/controllers',
+                       class_path,
+                       "#{file_name}_controller.rb")
   end
 end

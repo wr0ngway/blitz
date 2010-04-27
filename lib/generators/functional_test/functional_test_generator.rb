@@ -7,7 +7,7 @@ class FunctionalTestGenerator < Rails::Generators::NamedBase
     File.expand_path(File.join(File.dirname(__FILE__), 'templates'))
   end
 
-  def create_functional_test
+  def manifest
     class_collisions "#{class_name}ControllerTest"
 
     template 'functional_test.rb',
