@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Matt Conway"]
-  s.date = %q{2010-04-26}
+  s.date = %q{2010-04-29}
   s.description = %q{A Rails plugin for feature, view, controller, model, & helper generators. It is meant to be used as part of an "Outside-In" Test-Driven Development cycle.}
   s.email = %q{wr0ngway@yahoo.com}
   s.extra_rdoc_files = [
@@ -19,27 +19,6 @@ Gem::Specification.new do |s|
     "CHANGELOG.textile",
      "README.textile",
      "VERSION",
-     "generators/controller/controller_generator.rb",
-     "generators/controller/templates/controller.rb",
-     "generators/feature/feature_generator.rb",
-     "generators/feature/templates/feature.feature",
-     "generators/feature/templates/step_definition.rb",
-     "generators/functional_test/functional_test_generator.rb",
-     "generators/functional_test/templates/functional_test.rb",
-     "generators/helper/helper_generator.rb",
-     "generators/helper/templates/helper.rb",
-     "generators/helper/templates/helper_test.rb",
-     "generators/model/model_generator.rb",
-     "generators/model/templates/factory.rb",
-     "generators/model/templates/migration.rb",
-     "generators/model/templates/model.rb",
-     "generators/model/templates/unit_test.rb",
-     "generators/support/generator_helper.rb",
-     "generators/support/insert_commands.rb",
-     "generators/view/templates/empty.html.erb",
-     "generators/view/templates/index.html.erb",
-     "generators/view/templates/new.html.erb",
-     "generators/view/view_generator.rb",
      "lib/blitz.rb",
      "lib/generators/controller/controller_generator.rb",
      "lib/generators/controller/templates/controller.rb",
@@ -57,7 +36,6 @@ Gem::Specification.new do |s|
      "lib/generators/model/templates/model.rb",
      "lib/generators/model/templates/unit_test.rb",
      "lib/generators/support/generator_helper.rb",
-     "lib/generators/support/insert_commands.rb",
      "lib/generators/view/templates/empty.html.erb",
      "lib/generators/view/templates/index.html.erb",
      "lib/generators/view/templates/new.html.erb",
@@ -74,12 +52,12 @@ Gem::Specification.new do |s|
     s.specification_version = 3
 
     if Gem::Version.new(Gem::RubyGemsVersion) >= Gem::Version.new('1.2.0') then
-      s.add_runtime_dependency(%q<rails>, [">= 3.0.0.beta3"])
+      s.add_runtime_dependency(%q<railties>, [">= 3.0.0.beta3"])
     else
-      s.add_dependency(%q<rails>, [">= 3.0.0.beta3"])
+      s.add_dependency(%q<railties>, [">= 3.0.0.beta3"])
     end
   else
-    s.add_dependency(%q<rails>, [">= 3.0.0.beta3"])
+    s.add_dependency(%q<railties>, [">= 3.0.0.beta3"])
   end
 end
 
